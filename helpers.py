@@ -1,3 +1,6 @@
+# Retrieves Phone code. Do not change
+# File should be completely unchanged
+
 def retrieve_phone_code(driver) -> str:
     """This code retrieves phone confirmation number and returns it as a string.
     Use it when application waits for the confirmation code to pass it into your tests.
@@ -9,8 +12,7 @@ def retrieve_phone_code(driver) -> str:
     code = None
     for i in range(10):
         try:
-            logs = [log["message"] for log in driver.get_log('performance') if log.get("message")
-                    and 'api/v1/number?number' in log.get("message")]
+            logs = [log["message"] for log in driver.get_log('performance') if log.get("message") and 'api/v1/number?number' in log.get("message")]
             for log in reversed(logs):
                 message_data = json.loads(log)["message"]
                 body = driver.execute_cdp_cmd('Network.getResponseBody',
